@@ -1,0 +1,30 @@
+<%- include('../partials/head') %>
+    <div class="container">
+        <h1>My Car</h1>
+        <div class="card-container">
+
+            <% cars.forEach((car)=> { %>
+                <div class="card">
+                    <img src="<%= car.urlImage %>" class="card-img-top" alt="<%= car.model %>">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= car.model %>
+                        </h5>
+                        <p class="card-text">Price: $<%= car.price %>
+                        </p>
+                        <p class="card-text">Phone Number: <%= car.phoneNumber %>
+                        </p>
+                        <p class="card-text">Year: <%= car.year %>
+                        </p>
+                        <p class="card-text">Status: <%= car.status %>
+                        </p>
+                        <a href="/carshow/<%= car._id%>" class="btn btn-primary">Show Details</a>
+                    </div>
+                </div>
+                <% }); %>
+
+
+
+        </div>
+    </div>
+    <%- include('../partials/footer') %>

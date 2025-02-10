@@ -1,0 +1,38 @@
+<%- include('../partials/head') %>
+
+    <div class="container">
+        <h1>Add Your Car</h1>
+        <form action="/carshow/<%= user._id %>" method="POST">
+            <label for="model">Car Model: </label>
+            <input type="text" name="model" required>
+
+            <label for="year">Year: </label>
+            <input type="number" name="year" required>
+
+            <label for="phoneNumber">Phone Number: </label>
+            <input type="number" name="phoneNumber" required>
+
+            <label for="price">Price: </label>
+            <input type="number" name="price" required>
+
+            <label for="mileage">Mileage: </label>
+            <input type="number" name="mileage" required>
+
+            <label for="description">Description: </label>
+            <textarea name="description"></textarea>
+
+            <label for="urlImage">Image URL: </label>
+            <input type="text" name="urlImage" required>
+
+            <label for="status">Status: </label>
+            <select name="status" required>
+                <option value="" selected disabled></option>
+                <option value="Available">Available</option>
+                <option value="Sold">Sold</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">Add Car</button>
+        </form>
+    </div>
+
+    <%- include('../partials/footer') %>

@@ -1,0 +1,39 @@
+<%- include('../partials/head') %>
+
+    <div class="container">
+        <h1>Edit Car: <%= car.model %>
+        </h1>
+        <form action="/carshow/<%= user._id %>/<%= car._id %>?_method=PUT" method="POST">
+            <label for="model">Car Model: </label>
+            <input type="text" name="model" value="<%= car.model %>">
+
+            <label for="year">Year: </label>
+            <input type="number" name="year" value="<%= car.year %>">
+
+            <label for="phoneNumber">Phone Number: </label>
+            <input type="number" name="phoneNumber" value="<%= car.phoneNumber %>">
+
+            <label for="price">Price: </label>
+            <input type="number" name="price" value="<%= car.price %>">
+
+            <label for="mileage">Mileage: </label>
+            <input type="number" name="mileage" value="<%= car.mileage %>">
+
+            <label for="description">Description: </label>
+            <textarea name="description"><%= car.description %></textarea>
+
+            <label for="urlImage">Image URL: </label>
+            <input type="text" name="urlImage" value="<%= car.urlImage %>">
+
+            <label for="status">Status: </label>
+            <select name="status" required>
+                <option value="" disabled></option>
+                <option value="Available" <%=car.status==='Available' ? 'selected' : '' %>>Available</option>
+                <option value="Sold" <%=car.status==='Sold' ? 'selected' : '' %>>Sold</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">Update Car</button>
+        </form>
+    </div>
+
+    <%- include('../partials/footer') %>

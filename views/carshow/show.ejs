@@ -1,0 +1,30 @@
+<%- include('../partials/head') %>
+
+<div class="container">
+    <h1 class="text-center mb-4">Car Details</h1>
+
+    <div class="card mb-4 shadow-sm">
+        <img src="<%= car.urlImage %>" alt="Image of <%= car.model %>" class="card-img-top" style="max-height: 400px; object-fit: cover;">
+        <div class="card-body">
+            <h5 class="card-title">Model: <%= car.model %></h5>
+            <p class="card-text">
+                <strong>Year:</strong> <%= car.year %> <br>
+                <strong>Phone Number:</strong> <%= car.phoneNumber %> <br>
+                <strong>Price:</strong> $<%= car.price %> <br>
+                <strong>Mileage:</strong> <%= car.mileage %> miles <br>
+                <strong>Description:</strong> <%= car.description %> <br>
+                <strong>Status:</strong> <%= car.status %>
+            </p>
+            <div class="button-group">
+                <form action="/carshow/<%= car._id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete Car</button>
+                </form>
+                <a href="/carshow/<%= car._id %>/edit" class="btn btn-warning">Edit Car</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="/carshow/index" class="btn btn-secondary">Back to All Cars</a>
+</div>
+
+<%- include('../partials/footer') %>
