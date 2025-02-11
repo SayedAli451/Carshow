@@ -1,26 +1,49 @@
+
 <%- include('../partials/head') %>
 
 <div class="container">
     <h1 class="text-center mb-4">Car Details</h1>
 
-    <div class="card mb-4 shadow-sm">
-        <img src="<%= car.urlImage %>" alt="Image of <%= car.model %>" class="card-img-top" style="max-height: 400px; object-fit: cover;">
+    <div class="card mb-4 shadow-sm border">
+        <img src="<%= car.urlImage %>" alt="Image of <%= car.model %>" class="card-img-top"
+            style="max-height: 400px; object-fit: cover;">
         <div class="card-body">
-            <h5 class="card-title">Model: <%= car.model %></h5>
-            <p class="card-text">
-                <strong>Year:</strong> <%= car.year %> <br>
-                <strong>Phone Number:</strong> <%= car.phoneNumber %> <br>
-                <strong>Price:</strong> $<%= car.price %> <br>
-                <strong>Mileage:</strong> <%= car.mileage %> miles <br>
-                <strong>Description:</strong> <%= car.description %> <br>
-                <strong>Status:</strong> <%= car.status %>
-            </p>
-            <div class="button-group">
-                <form action="/carshow/<%= car._id %>?_method=DELETE" method="POST" style="display:inline;">
-                    <button type="submit" class="btn btn-danger">Delete Car</button>
-                </form>
-                <a href="/carshow/<%= car._id %>/edit" class="btn btn-warning">Edit Car</a>
+            <h5 class="card-title text-center">
+                <%= car.model %>
+            </h5>
+            <div class="card-text-container">
+                <p class="card-text">
+                    <strong>Year:</strong> <span class="text-left"><%= car.year %></span> <br>
+                    <strong>Phone Number:</strong> <span class="text-left">+973 <%= car.phoneNumber %></span> <br>
+                    <strong>Price:</strong> <span class="text-left"><%= car.price %> BD</span> <br>
+                    <strong>Mileage:</strong> <span class="text-left"><%= car.mileage %> KM</span> <br>
+                    <strong>Description:</strong> <span class="text-left"><%= car.description %></span> <br>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <span class="me-2"></span> 
+                        <div class="status-badge">
+                            <% if (car.status === 'Available') { %>
+                                <span class="badge bg-warning">
+                                    <%= car.status %>
+                                </span>
+                            <% } else if (car.status === 'Sold') { %>
+                                <span class="badge bg-danger">
+                                    <%= car.status %>
+                                </span>
+                            <% } %>
+                        </div>
+                    </div>
+                </p>
             </div>
+            <% if (car.owner._id.equals(user._id)) { %>
+                <div class="d-flex justify-content-between mt-3">
+                    <form action="/carshow/<%= user._id %>/<%= car._id %>?_method=DELETE" method="POST"
+                        class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="/carshow/<%= user._id %>/<%= car._id %>/edit" class="btn btn-warning">Edit</a>
+                </div>
+            <% } %>
         </div>
     </div>
 

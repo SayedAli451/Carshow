@@ -1,17 +1,27 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
+const isStrongPassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars;
+};
+
 
 const signUp = (req, res) => {
-    res.render('auth/sign-up.ejs', 
-        {title: 'Sign up', msg: ''} )
+    res.render('auth/sign-up.ejs',
+        { title: 'Sign up', msg: '' })
 }
 
 const addUser = async (req, res) => {
     console.log('request body: ', req.body)
-    const userInDatabase = await User.findOne({ username: req.body.username})
+    const userInDatabase = await User.findOne({ username: req.body.username })
     if (userInDatabase) {
-        return res.render('auth/sign-up.ejs',{
-            title: 'Sign up', 
+        return res.render('auth/sign-up.ejs', {
+            title: 'Sign up',
             msg: 'Username already taken.'
         })
     }
@@ -21,17 +31,23 @@ const addUser = async (req, res) => {
             msg: 'Password and Confirm Password must match.'
         })
     }
+    if (!isStrongPassword(req.body.password)) {
+        return res.render('auth/sign-up.ejs', {
+            title: 'Sign up',
+            msg: 'Password must be Strong, Add (A,z),Special characters(e.g., @, #, $, etc.)'
+        });
+    }
     const hashedPassword = bcrypt.hashSync(req.body.password, 10)
     req.body.password = hashedPassword
 
     const user = await User.create(req.body)
-    
+
     req.session.user = user
-    
+
     req.session.save(() => {
         res.redirect('/')
     })
-    
+
 }
 
 const signInForm = (req, res) => {
@@ -75,7 +91,7 @@ const signOut = (req, res) => {
         res.clearCookie('connect.sid')
         res.redirect('/')
     })
-    
+
 }
 
 module.exports = {

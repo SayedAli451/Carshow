@@ -1,38 +1,66 @@
 <%- include('../partials/head') %>
 
-    <div class="container">
-        <h1>Add Your Car</h1>
-        <form action="/carshow/<%= user._id %>" method="POST">
-            <label for="model">Car Model: </label>
-            <input type="text" name="model" required>
+    <div class="form-container mt-5">
+        <h1 class="form-title text-center mb-4">Add Your Car</h1>
+        <form action="/carshow/<%= user._id %>" method="POST" class="form-content">
+            <div class="form-group">
+                <label for="model">Car Model:</label>
+                <input type="text" class="form-input" name="model" required>
+            </div>
 
-            <label for="year">Year: </label>
-            <input type="number" name="year" required>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" class="form-input" name="year" required>
+            </div>
 
-            <label for="phoneNumber">Phone Number: </label>
-            <input type="number" name="phoneNumber" required>
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" class="form-input" name="phoneNumber" required>
+            </div>
 
-            <label for="price">Price: </label>
-            <input type="number" name="price" required>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="text" class="form-input" name="price" id="price" required oninput="formatPrice(this)">
+            </div>
 
-            <label for="mileage">Mileage: </label>
-            <input type="number" name="mileage" required>
+            <div class="form-group">
+                <label for="mileage">Mileage:</label>
+                <input type="text" class="form-input" name="mileage" id="mileage" required
+                    oninput="formatMileage(this)">
+            </div>
 
-            <label for="description">Description: </label>
-            <textarea name="description"></textarea>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-input" name="description" rows="3"></textarea>
+            </div>
 
-            <label for="urlImage">Image URL: </label>
-            <input type="text" name="urlImage" required>
+            <div class="form-group">
+                <label for="urlImage">Image URL:</label>
+                <input type="text" class="form-input" name="urlImage" required>
+            </div>
 
-            <label for="status">Status: </label>
-            <select name="status" required>
-                <option value="" selected disabled></option>
-                <option value="Available">Available</option>
-                <option value="Sold">Sold</option>
-            </select>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select class="form-input" name="status" required>
+                    <option value="" selected disabled>Select Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Sold">Sold</option>
+                </select>
+            </div>
 
-            <button type="submit" class="btn btn-primary">Add Car</button>
+            <button type="submit" class="form-button">Add Car</button>
         </form>
     </div>
-
+    <script>
+        function formatMileage(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            input.value = value;
+        }
+        function formatPrice(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            input.value = value;
+        }
+    </script>
     <%- include('../partials/footer') %>

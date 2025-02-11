@@ -2,24 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Cars = require('../models/carshow.js');
 
-// const allcar = async (req, res) => {
-//     try {
-//         const cars = await User.aggregate([
-//             { $unwind: "$owner" },
-//             { $replaceRoot: { newRoot: "$owner" } },
-
-//         ])
-//         console.log(cars)
-
-//         res.render('carshow/allcar.ejs', {
-//             title: " All Cars",
-//             cars
-//         });
-//     } catch (err) {
-//         console.log(err);
-//         res.redirect('/');
-//     }
-// }
 
 const index = async (req, res) => {
     try {
@@ -35,6 +17,19 @@ const index = async (req, res) => {
 }
 const newCars = async (req, res) => {
     res.render('carshow/new.ejs', { title: "Add Car" })
+}
+
+const myCar = async (req, res) => {
+    try {
+        const cars = await Cars.find({ owner: req.session.user._id }).populate('owner');
+        res.render('carshow/my.ejs', {
+            title: "My Cars",
+            cars: cars 
+        });
+    } catch (err) {
+        console.log(err);
+        res.redirect('/');
+    }
 }
 
 const creat = async (req, res) => {
@@ -89,7 +84,7 @@ const editCar = async (req, res) => {
                 car
             })
         } else {
-            res.send("You don't have permission to do that.") // if owner and signed in user are different - send message
+            res.send("You don't have permission to do that.") 
         }
     } catch (error) {
         console.log(error)
@@ -118,7 +113,7 @@ const updateCar = async (req, res) => {
 
 module.exports = {
     index,
-    // allcar,
+    myCar,
     newCars,
     creat,
     show,

@@ -1,0 +1,67 @@
+<%- include('../partials/head') %>
+    <div class="container">
+        <h1 class="form-title text-center mb-4">My Car</h1>
+        <div class="row">
+            <% if (cars.length===0) { %>
+                <div class="col-12 text-center">
+                    <p class="alert alert-info">"Your car is empty"</p>
+                </div>
+                <% } else { %>
+                    <% cars.forEach((car)=> { %>
+                        <div class="col-md-4 mb-4">
+                            <div class="card shadow-sm border">
+                                <img src="<%= car.urlImage %>" class="card-img-top" alt="<%= car.model %>"
+                                    style="max-height: 300px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">
+                                        <%= car.model %>
+                                    </h5>
+                                    <div class="card-text-container">
+                                        <p class="card-text">
+                                            <strong>Year:</strong> <span class="text-left">
+                                                <%= car.year %>
+                                            </span> <br>
+                                            <strong>Phone Number:</strong> <span class="text-left">+973 <%=
+                                                    car.phoneNumber %></span> <br>
+                                            <strong>Price:</strong> <span class="text-left">
+                                                <%= car.price %> BD
+                                            </span> <br>
+                                            <strong>Mileage:</strong> <span class="text-left">
+                                                <%= car.mileage %> KM
+                                            </span> <br>
+                                            <strong>Description:</strong> <span class="text-left">
+                                                <%= car.description %>
+                                            </span> <br>
+                                            <strong>Status:</strong>
+                                        <div class="d-flex justify-content-between align-items-center mt-2">
+                                            <span class="me-2"></span> 
+                                            <div class="status-badge">
+                                                <% if (car.status==='Available' ) { %>
+                                                    <span class="badge bg-warning text-dark">
+                                                        <%= car.status %>
+                                                    </span>
+                                                    <% } else if (car.status==='Sold' ) { %>
+                                                        <span class="badge bg-danger">
+                                                            <%= car.status %>
+                                                        </span>
+                                                        <% } %>
+                                            </div>
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <form action="/carshow/<%= user._id %>/<%= car._id %>?_method=DELETE"
+                                            method="POST" class="d-inline">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                        <a href="/carshow/<%= user._id %>/<%= car._id %>/edit"
+                                            class="btn btn-warning">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <% } %>
+        </div>
+    </div>
+    <%- include('../partials/footer') %>

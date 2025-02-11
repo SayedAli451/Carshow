@@ -5,6 +5,8 @@ const express = require('express')
 const app = express()
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const multer = require('multer')
+const upload = multer({ dest: 'images/' })
 
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
@@ -23,6 +25,7 @@ mongoose.connection.on('connected', () => {
 
 // MIDDLEWARE
 app.use(methodOverride('_method'));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, "public")))
@@ -61,10 +64,12 @@ app.use(isSignedIn)
 app.get('/carshow/index', carCtrl.index)
 app.get('/carshow/new', carCtrl.newCars)
 app.post('/carshow/:userId', carCtrl.creat)
+app.get('/carshow/mycar', carCtrl.myCar)
 app.get('/carshow/:carshowId', carCtrl.show)
 app.delete('/carshow/:userId/:carshowId', carCtrl.deleteCar);
 app.get('/carshow/:userId/:carshowId/edit', carCtrl.editCar)
 app.put('/carshow/:userId/:carshowId', carCtrl.updateCar)
+
 
 app.listen(port, () => {
     console.log(`The express app is ready on port ${port}`)

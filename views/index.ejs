@@ -1,9 +1,24 @@
 <%- include('partials/head') %>
 
-    <% if (user) { %>
-        <h1>Welcome to the App <%= user.username %>!</h1>
-    <% } else { %>
-        <h1>Welcome to the App guest.</h1>
-    <% } %>
+    <div class="content">
 
-<%- include('partials/footer') %>
+
+        <div class="image-container">
+            <img src="assets/image.jpg" alt="Welcome Image" class="responsive-image">
+        </div>
+
+        <div class="welcomeText">
+            <h1> <span class="text-red"> Car</span><span class="text-white">Show</span></h1>
+            <p>WE PROVIDE LUXURY <br> CARS FOR BUYING AND SELLING </p>
+            <div class="buttons">
+                <% if(user) { %>
+                    <h1 style="color: #CC0000; font-weight: bold;">Welcome <%= user.username %> !</h1>
+                    <% } else { %>
+                        <a href="/auth/sign-in" class="sign-in-btn">Sign In</a>
+                        <a href="/auth/sign-up" class="sign-out-btn">Sign Out</a>
+                        <% } %>
+            </div>
+        </div>
+
+
+        <%- include('partials/footer') %>
