@@ -2,10 +2,10 @@
 <%- include('../partials/head') %>
 
 <div class="container">
-    <h1 class="text-center mb-4">Car Details</h1>
+    <h1 class="form-title text-center mb-4">Car Details</h1>
 
     <div class="card mb-4 shadow-sm border">
-        <img src="<%= car.image %>" alt="Image of <%= car.model %>" class="card-img-top"
+        <img src=<%=car.image.url %> class="card-img-top" alt="listing for <%= car.model %>">
             style="max-height: 400px; object-fit: cover;">
         <div class="card-body">
             <h5 class="card-title text-center">

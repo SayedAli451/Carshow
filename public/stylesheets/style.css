@@ -9,13 +9,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
-    color: #FFF;
     padding: 20px;
     border-radius: 8px;
-
     justify-content: center;
-
 }
 
 .card-container {
@@ -23,26 +19,39 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     max-width: 1200px;
+    gap: 20px;
 }
 
 .card {
     background-color: #1e1e1e;
     border: 1px solid #ced4da;
     border-radius: 8px;
-    width: 88%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 400px;
     margin: 20px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-    font-size: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .card:hover {
     transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card img {
-    max-width: 100%;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -59,20 +68,10 @@ body {
     font-weight: bold;
 }
 
-.card-text-container {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-    background-color: #1e1e1e;
-    text-align: left;
-}
-
 .card-text {
     margin: 0;
     font-size: 1em;
     color: #CCCCCC;
-
 }
 
 form {
@@ -206,26 +205,67 @@ form button {
     font-size: 1.2em;
     text-decoration: none;
     transition: background-color 0.3s;
-
 }
 
 .sign-in-btn:hover,
 .sign-out-btn:hover {
     background-color: #FFD700;
+}
 
+.button-group {
+    display: flex;
+    gap: 10px; /* Adds space between buttons */
+    align-items: center; /* Aligns buttons vertically */
 }
 
 .btn {
-    background-color: #333;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 8px 16px; /* Button padding */
+    font-size: 0.9em; /* Button font size */
+    border-radius: 5px; /* Rounded corners */
+    border: none; /* Removes default border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
 }
 
-.btn:hover {
-    background-color: #FFD700;
+.btn-danger {
+    background-color: #dc3545; /* Red color for delete button */
+    color: white; /* White text */
+}
 
+.btn-danger:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.btn-warning {
+    background-color: #ffc107; /* Yellow color for edit button */
+    color: black; /* Black text */
+}
+
+.btn-warning:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.status-badge {
+    margin-left: auto; /* Pushes the status badge to the right */
+    font-size: 1em; /* Font size for status badge */
+    padding: 0.5em 1em; /* Padding for status badge */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.badge {
+    font-weight: bold; /* Bold text for badge */
+}
+
+.bg-warning {
+    background-color: #ffc107; /* Yellow background for "Available" */
+    color: black; /* Black text */
+}
+
+.bg-danger {
+    background-color: #dc3545; /* Red background for "Sold" */
+    color: white; /* White text */
 }
 
 .center-wrapper {
@@ -242,7 +282,6 @@ form button {
     align-items: center;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
-
 }
 
 .form-group {
@@ -250,8 +289,6 @@ form button {
     color: #CCCCCC;
     font-family: 'Montserrat', sans-serif;
 }
-
-
 
 label {
     display: flex;
@@ -266,7 +303,6 @@ input {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
 
 @media (max-width: 768px) {
     .container {
@@ -343,5 +379,5 @@ input {
     justify-content: space-between;
     flex-wrap: wrap;
     height: 100vh;
-
 }
+
