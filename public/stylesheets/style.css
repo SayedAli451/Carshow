@@ -214,58 +214,58 @@ form button {
 
 .button-group {
     display: flex;
-    gap: 10px; /* Adds space between buttons */
-    align-items: center; /* Aligns buttons vertically */
+    gap: 10px;
+    align-items: center;
 }
 
 .btn {
-    padding: 8px 16px; /* Button padding */
-    font-size: 0.9em; /* Button font size */
-    border-radius: 5px; /* Rounded corners */
-    border: none; /* Removes default border */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+    padding: 8px 16px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn-danger {
-    background-color: #dc3545; /* Red color for delete button */
-    color: white; /* White text */
+    background-color: #dc3545;
+    color: white;
 }
 
 .btn-danger:hover {
-    background-color: #c82333; /* Darker red on hover */
-    transform: scale(1.05); /* Slightly scale up on hover */
+    background-color: #c82333;
+    transform: scale(1.05);
 }
 
 .btn-warning {
-    background-color: #ffc107; /* Yellow color for edit button */
-    color: black; /* Black text */
+    background-color: #ffc107;
+    color: black;
 }
 
 .btn-warning:hover {
-    background-color: #e0a800; /* Darker yellow on hover */
-    transform: scale(1.05); /* Slightly scale up on hover */
+    background-color: #e0a800;
+    transform: scale(1.05);
 }
 
 .status-badge {
-    margin-left: auto; /* Pushes the status badge to the right */
-    font-size: 1em; /* Font size for status badge */
-    padding: 0.5em 1em; /* Padding for status badge */
-    border-radius: 5px; /* Rounded corners */
+    margin-left: auto;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    border-radius: 5px;
 }
 
 .badge {
-    font-weight: bold; /* Bold text for badge */
+    font-weight: bold;
 }
 
 .bg-warning {
-    background-color: #ffc107; /* Yellow background for "Available" */
-    color: black; /* Black text */
+    background-color: #ffc107;
+    color: black;
 }
 
 .bg-danger {
-    background-color: #dc3545; /* Red background for "Sold" */
-    color: white; /* White text */
+    background-color: #dc3545;
+    color: white;
 }
 
 .center-wrapper {
@@ -380,4 +380,3 @@ input {
     flex-wrap: wrap;
     height: 100vh;
 }
-
