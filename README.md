@@ -1,7 +1,7 @@
 # CarShow
 
 ## Description
-CarShow is an app for buying and selling cars. It connects car enthusiasts and makes transactions easy.
+CarShow is an app for buying and selling cars. 
 
 
 ## Technologies Used
