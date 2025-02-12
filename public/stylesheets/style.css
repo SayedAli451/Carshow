@@ -87,66 +87,111 @@ form button {
 
 .navbar-custom {
     background-color: #1e1e1e;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .navbar-custom .nav-link {
     color: #CCCCCC;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .navbar-custom .nav-link:hover {
     color: #FFD700;
+    transform: scale(1.1);
 }
 
 .text-red {
     color: red;
     font-weight: bold;
     font-size: x-large;
+    transition: transform 0.3s ease;
 }
 
 .text-white {
     color: white;
     font-weight: bold;
     font-size: large;
+    transition: transform 0.3s ease;
 }
 
+.text-red:hover,
+.text-white:hover {
+    transform: scale(1.1);
+}
 
 .responsive-image {
     width: 990px;
-
     border-radius: 60%;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeInScale 1s forwards;
+}
 
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .welcomeText {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-  
-   
     width: 800px;
     padding: 100px;
     margin: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .welcomeText .text-red {
     color: red;
     font-weight: bold;
     font-size: 2em;
+    transition: transform 0.3s ease;
 }
 
 .welcomeText .text-white {
     color: white;
     font-weight: bold;
     font-size: 1.5em;
+    transition: transform 0.3s ease;
 }
 
 .welcomeText p {
     font-size: 1.5em;
     color: #CCCCCC;
+}
+
+.welcomeText:hover .text-red,
+.welcomeText:hover .text-white {
+    transform: scale(1.1);
 }
 
 .sign-in-btn,
@@ -161,6 +206,7 @@ form button {
     font-size: 1.2em;
     text-decoration: none;
     transition: background-color 0.3s;
+
 }
 
 .sign-in-btn:hover,

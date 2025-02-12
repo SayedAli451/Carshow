@@ -23,12 +23,10 @@ const carSchema = new mongoose.Schema({
     description: {
         type: String,
     },
-    urlImage:
-    {
-        type: String,
-        required: true,
-
-    },
+    image: {
+        url: { type: String, required: true }, // Cloudinary URL
+        cloudinary_id: { type: String, required: true }, // Public ID for deletion
+      },
     status: {
         type: String,
         enum: ['Sold', 'Available'],

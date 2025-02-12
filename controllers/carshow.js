@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Cars = require('../models/carshow.js');
-
+const cloudinary = require("../config/cloudinary") // require Cloudinary in the controller file
 
 const index = async (req, res) => {
     try {
@@ -24,7 +24,7 @@ const myCar = async (req, res) => {
         const cars = await Cars.find({ owner: req.session.user._id }).populate('owner');
         res.render('carshow/my.ejs', {
             title: "My Cars",
-            cars: cars 
+            cars: cars
         });
     } catch (err) {
         console.log(err);
@@ -33,7 +33,13 @@ const myCar = async (req, res) => {
 }
 
 const creat = async (req, res) => {
+    console.log('req: ', req.file)
+
     try {
+        req.body.image = {
+            url: req.file.path, // Cloudinary URL
+            cloudinary_id: req.file.filename, // Cloudinary public ID
+        }
         req.body.owner = req.params.userId
         await Cars.create(req.body)
         res.redirect('/carshow/index')
@@ -60,6 +66,13 @@ const show = async (req, res) => {
 const deleteCar = async (req, res) => {
     try {
         const car = await Cars.findById(req.params.carshowId)
+        if (!car) return res.status(404).json({ message: "Car not found" });
+
+        // Delete image from Cloudinary
+        const cloudinary = require("../config/cloudinary");
+
+
+        await cloudinary.uploader.destroy(car.image.cloudinary_id);
 
         if (car.owner.equals(req.params.userId)) {
             await car.deleteOne()
@@ -84,7 +97,7 @@ const editCar = async (req, res) => {
                 car
             })
         } else {
-            res.send("You don't have permission to do that.") 
+            res.send("You don't have permission to do that.")
         }
     } catch (error) {
         console.log(error)
@@ -92,9 +105,21 @@ const editCar = async (req, res) => {
     }
 }
 
+
 const updateCar = async (req, res) => {
     try {
-        const car = await Cars.findByIdAndUpdate(
+        const car = await Cars.findById(req.params.carshowId)
+
+        // Delete the old image from Cloudinary
+        await cloudinary.uploader.destroy(listing.imgUrl.cloudinary_id);
+
+        // Add the new image to the form data
+        req.body.imgUrl = {
+            url: req.file.path, // Cloudinary URL
+            cloudinary_id: req.file.filename, // Cloudinary public ID
+        }
+
+        await Cars.findByIdAndUpdate(
             req.params.carshowId,
             req.body,
             { new: true }
@@ -105,9 +130,6 @@ const updateCar = async (req, res) => {
         res.redirect('/')
     }
 }
-
-
-
 
 
 

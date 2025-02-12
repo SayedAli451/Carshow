@@ -2,7 +2,7 @@
 
     <div class="form-container mt-5">
         <h1 class="form-title text-center mb-4">Add Your Car</h1>
-        <form action="/carshow/<%= user._id %>" method="POST" class="form-content">
+        <form action="/carshow/<%= user._id %>" method="POST" class="form-content" enctype="multipart/form-data" >
             <div class="form-group">
                 <label for="model">Car Model:</label>
                 <input type="text" class="form-input" name="model" required>
@@ -35,8 +35,8 @@
             </div>
 
             <div class="form-group">
-                <label for="urlImage">Image URL:</label>
-                <input type="text" class="form-input" name="urlImage" required>
+                <label for="image">Image URL:</label>
+                <input type="file" name="image" accept="image/*" required />
             </div>
 
             <div class="form-group">
