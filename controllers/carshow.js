@@ -68,7 +68,7 @@ const deleteCar = async (req, res) => {
         const car = await Cars.findById(req.params.carshowId)
         if (!car) return res.status(404).json({ message: "Car not found" });
 
-        // Delete image from Cloudinary
+      
         const cloudinary = require("../config/cloudinary");
 
 

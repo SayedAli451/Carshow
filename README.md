@@ -30,10 +30,10 @@ To run this project locally, follow these steps:
 ![alt text](addCar.png)
 
 - My Car
-![alt text](MyCar.png)
+![alt text](MYCAR2.png)
 
 - All Car 
-![alt text](ALLCAR.png)
+![alt text](ALLCAR2.png)
 
  ## Features
 - Search and filter cars
