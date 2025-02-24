@@ -129,34 +129,42 @@ form button {
     transform: scale(1.1);
 }
 
-.responsive-image {
-    width: 990px;
-    border-radius: 60%;
-    opacity: 0;
-    transform: scale(0.9);
-    animation: fadeInScale 1s forwards;
+.content {
+    display: flex;
+    justify-content: space-between;
+    /* Space between image and text */
+    align-items: center;
+    /* Center vertically */
+    padding: 0 20px;
+    /* Add padding to the sides */
+    max-width: 1200px;
+    /* Limit the maximum width */
+    margin: 0 auto;
+    /* Center the content horizontally */
+    height: 100vh;
+    /* Full viewport height to center vertically */
 }
 
-@keyframes fadeInScale {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+.image-container {
+    flex: 1;
+    /* Allow the image to take up available space */
+    display: flex;
+    justify-content: flex-start;
+    /* Align image to the left */
+    align-items: center;
+    /* Center vertically */
+    height: 100%;
+    /* Take full height of the parent */
 }
 
 .welcomeText {
+    flex: 1;
+    /* Allow the text to take up available space */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    width: 800px;
-    padding: 100px;
-    margin: 20px;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 1s forwards;
@@ -186,11 +194,50 @@ form button {
 .welcomeText p {
     font-size: 1.5em;
     color: #CCCCCC;
+    margin: 10px 0;
 }
 
 .welcomeText:hover .text-red,
 .welcomeText:hover .text-white {
     transform: scale(1.1);
+}
+
+.responsive-image {
+    width: 600px;
+    max-width: 100%;
+    border-radius: 60%;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeInScale 1s forwards;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.responsive-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    /* Center buttons horizontally */
+    gap: 15px;
+    /* Add spacing between buttons */
+    margin-top: 20px;
+    /* Add spacing above the buttons */
 }
 
 .sign-in-btn,
@@ -200,7 +247,6 @@ form button {
     padding: 15px 30px;
     border: none;
     border-radius: 8px;
-    margin: 0 15px;
     cursor: pointer;
     font-size: 1.2em;
     text-decoration: none;
